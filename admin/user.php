@@ -9,7 +9,7 @@ include '_header.php';
 <div class="alert alert-warning"><strong>Peringatan !</strong><br>Hak akses user pada aplikasi ini sangat sederhana, siapapun user yang memiliki hak akses dapat melakukan perubahan konten database. Meskipun aplikasi ini telah dilengkapi enkripsi untuk password, <strong>jangan</strong> menggunakan kata-kata yang umum sebagai password admin.</div>
 <?php
 		
-	$qUser = mysqli_query($db_conn,"SELECT * FROM un_user ORDER BY username");
+	$qUser = mysqli_query($db_conn,"SELECT * FROM user ORDER BY username");
 
 	echo '<div class="row">';
 	echo '<div class="col-md-6">';

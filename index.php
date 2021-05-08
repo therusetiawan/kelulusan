@@ -1,6 +1,6 @@
 <?php
 include "database.php";
-$que = mysqli_query($db_conn, "SELECT * FROM un_konfigurasi");
+$que = mysqli_query($db_conn, "SELECT * FROM konfigurasi");
 $hsl = mysqli_fetch_array($que);
 $timestamp = strtotime($hsl['tgl_pengumuman']);
 // menghapus tags html (mencegah serangan jso pada halaman index)
@@ -35,7 +35,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="./">Info Kelulusan <?=$sekolah; ?></a>
+              <a class="navbar-brand" href="./">Pengumuman Kelulusan <?=$sekolah; ?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
@@ -55,39 +55,25 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 		<?php
 		if(isset($_POST['submit'])){
 			//tampilkan hasil queri jika ada
-			$no_ujian = stripslashes($_POST['nomor']);
+			$nis = stripslashes($_POST['nis']);
+			$tgl_lahir = date('Y-m-d', strtotime($_POST['tgl_lahir']));
 			
-			$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$no_ujian'");
+			$hasil = mysqli_query($db_conn,"SELECT * FROM siswa WHERE no_ujian='$nis' AND tgl_lahir='$tgl_lahir'");
 			if(mysqli_num_rows($hasil) > 0){
 				$data = mysqli_fetch_array($hasil);
 				
 		?>
 			<table class="table table-bordered">
-				<tr><td>Nomor Ujian</td><td><?= htmlspecialchars($data['no_ujian']); ?></td></tr>
+				<tr><td>NIS</td><td><?= htmlspecialchars($data['no_ujian']); ?></td></tr>
 				<tr><td>Nama Siswa</td><td><?= htmlspecialchars($data['nama']); ?></td></tr>
-				<tr><td>Kompetensi Keahlian</td><td><?= htmlspecialchars($data['komli']); ?></td></tr>
-			</table>
-			<table class="table table-bordered">
-				<thead>
-				<tr>
-					<th>Bahasa Indonesia</th>
-					<th>Bahasa Inggris</th>
-					<th>Matematika</th>
-					<th>Kejuruan</th>
-				</tr>
-				</thead>
-				<tbody>
-					// htmlspecialchars() digunakan agar tidak mengeksekusi kode html
-					<td><?= htmlspecialchars($data['n_bin']); ?></td>
-					<td><?= htmlspecialchars($data['n_big']); ?></td>
-					<td><?= htmlspecialchars($data['n_mat']); ?></td>
-					<td><?= htmlspecialchars($data['n_kejuruan']); ?></td>
-				</tbody>
+				<tr><td>Kelas</td><td><?= htmlspecialchars($data['kelas']); ?></td></tr>
 			</table>
 			
 			<?php
 			if( $data['status'] == 1 ){
 				echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+				echo '<br><br>';
+				echo '<center><a href="'.$data['suket_url'].'" target="blank"><button class="btn btn-primary center" type="submit" name="submit">Download Surat Keterangan</button></a></center>';
 			} else {
 				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
 			}	
@@ -95,20 +81,32 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 			
 		<?php
 			} else {
-				echo 'nomor ujian yang anda inputkan tidak ditemukan! periksa kembali nomor ujian anda.';
+				echo '<p style="color: red">Data tidak ditemukan! Periksa kembali nomor induk siswa dan tanggal lahir.</p>';
 				//tampilkan pop-up dan kembali tampilkan form
 			}
 		} else {
 			//tampilkan form input nomor ujian
 		?>
-        <p>Masukkan nomor ujianmu pada form yang disediakan.</p>
-        
-        <form method="post">
-            <div class="input-group">
-                <input type="text" name="nomor" class="form-control" data-mask="23-101-999-9" placeholder="Nomor Ujian" required>
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" name="submit">Periksa!</button>
-                </span>
+	<p>Masukkan data diri anda!</p>
+        <form method="post" class="form-horizontal">
+            <div class="form-group">
+		<label class="col-sm-4 control-label">Nomor Induk Siswa</label>
+		<div class="col-sm-6">
+                    <input type="number" name="nis" class="form-control" required>
+		</div>
+            </div>
+            <div class="form-group">
+		<label class="col-sm-4 control-label">Tanggal Lahir</label>
+		<div class="col-sm-6">
+			<input required type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
+		</div>
+            </div>
+            <div class="form-group">
+		<div class="col-sm-10">
+		    <span class="input-group-btn">
+			<button class="btn btn-primary pull-right" type="submit" name="submit">Periksa!</button>
+		    </span>
+		</div>
             </div>
         </form>
 		<?php

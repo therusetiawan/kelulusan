@@ -15,12 +15,12 @@ include '_header.php';
       $cfgTahun = $_REQUEST['cfgTahun'];
       $cfgTgl = $_REQUEST['cfgTanggal'].' '.$_REQUEST['cfgJam'];
 
-      $qCfg = "UPDATE un_konfigurasi SET sekolah='$cfgSekolah',tahun='$cfgTahun',tgl_pengumuman='$cfgTgl' WHERE id='$cfgID'";
+      $qCfg = "UPDATE konfigurasi SET sekolah='$cfgSekolah',tahun='$cfgTahun',tgl_pengumuman='$cfgTgl' WHERE id='$cfgID'";
       $upCfg = mysqli_query($db_conn,$qCfg);
       sleep(2);
     }
 
-    $qconfig = mysqli_query($db_conn,"SELECT * FROM un_konfigurasi");
+    $qconfig = mysqli_query($db_conn,"SELECT * FROM konfigurasi");
     $hsl = mysqli_fetch_array($qconfig);
     ?>
 <form class="form-horizontal" method="post">

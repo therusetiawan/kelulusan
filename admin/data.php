@@ -19,7 +19,7 @@ include '_header.php';
 						<span class="input-group-addon btn btn-default btn-file">
 							<span class="fileinput-new">Pilih file</span>
 							<span class="fileinput-exists">Ganti</span>
-							<input type="file" name="file">
+							<input type="file" name="file" required>
 						</span>
 						<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Buang</a>
 					</div>
@@ -35,39 +35,35 @@ include '_header.php';
 </div>
 <div class="row">
 	<div class="container">
-		<table class="table table-bordered">
+		<table class="table table-bordered" id="myTable">
 			<thead>
 				<tr>
-					<th rowspan="2">No. Ujian</th>
-					<th rowspan="2">Nama Siswa</th>
-					<th rowspan="2">Kompetensi Keahlian</th>
-					<th colspan="4">Nilai UN</th>
-					<th rowspan="2">Status</th>
-				</tr>
-				<tr>
-					<th>Bahasa Indonesia</th>
-					<th>Bahasa Inggris</th>
-					<th>Matematika</th>
-					<th>Kejuruan</th>
+					<th>No</th>
+					<th>NIS</th>
+					<th>Nama Siswa</th>
+					<th>Tanggal Lahir</th>
+					<th>Kelas</th>
+					<th>Status</th>
+					<th>Surat Keterangan</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php
-			$qsiswa = mysqli_query($db_conn,"SELECT * FROM un_siswa");
+			$qsiswa = mysqli_query($db_conn,"SELECT * FROM siswa");
 			
 			if(mysqli_num_rows($qsiswa) > 0){
+				$i = 1;
 				while($data = mysqli_fetch_array($qsiswa)){
 					echo '<tr>';
+					echo '<td>'.$i++.'</td>';
 					echo '<td>'.$data['no_ujian'].'</td>';
 					echo '<td>'.$data['nama'].'</td>';
-					echo '<td>'.$data['komli'].'</td>';
-					echo '<td>'.$data['n_bin'].'</td>';
-					echo '<td>'.$data['n_big'].'</td>';
-					echo '<td>'.$data['n_mat'].'</td>';
-					echo '<td>'.$data['n_kejuruan'].'</td>';
+					echo '<td>'.$data['tgl_lahir'].'</td>';
+					echo '<td>'.$data['kelas'].'</td>';
 					echo '<td>';
-					echo ($data['status']==1) ? 'Lulus' : '<em>Tidak Lulus</em>';
+					echo ($data['status']==1) ? '<span class="badge-success">Lulus</span>' : '<span class="badge-danger">Tidak Lulus</span>';
 					echo '</td>';
+					echo '<td><a href="'.$data['suket_url'].'" target="blank">'.$data['suket_url'].'</a></td>';
 					echo '</tr>';
 				}
 			} else {

@@ -13,7 +13,7 @@ if(isset($_REQUEST['submit'])){
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
 	
-	$simpan = mysqli_query($db_conn,"INSERT INTO un_user VALUES('','$username',md5('$password'))");
+	$simpan = mysqli_query($db_conn,"INSERT INTO user VALUES('','$username',md5('$password'))");
 	if($simpan){
 		header('Location: user.php');
 	} else {

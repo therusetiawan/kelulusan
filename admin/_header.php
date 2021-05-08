@@ -19,6 +19,7 @@ if(isset($_SESSION['logged']) && !empty($_SESSION['logged'])){
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
     <!-- Custom styles down here -->
     <style type="text/css">
 	/* Sticky footer styles
@@ -79,7 +80,7 @@ if(isset($_SESSION['logged']) && !empty($_SESSION['logged'])){
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="./">Info Kelulusan <?=$hsl['sekolah'] ?></a>
+              <a class="navbar-brand" href="./">Pengumuman Kelulusan <?=$hsl['sekolah'] ?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
 				<!--tampil setelah sukses login -->

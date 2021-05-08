@@ -15,9 +15,9 @@ if(isset($_REQUEST['submit'])){
 	$username = $_REQUEST['username'];
 	if(isset($_REQUEST['password'])){
 		$password = $_REQUEST['password'];
-		$sql = "UPDATE un_user SET username='$username', password=md5('$password') WHERE UID='$uid'";
+		$sql = "UPDATE user SET username='$username', password=md5('$password') WHERE UID='$uid'";
 	} else {
-		$sql = "UPDATE un_user SET username='$username' WHERE UID='$uid'";
+		$sql = "UPDATE user SET username='$username' WHERE UID='$uid'";
 	}
 	
 	$simpan = mysqli_query($db_conn,$sql);
@@ -28,7 +28,7 @@ if(isset($_REQUEST['submit'])){
 	}
 } else {
 	//form edit user
-	$qUser = mysqli_query($db_conn,"SELECT * FROM un_user WHERE UID='$uid'");
+	$qUser = mysqli_query($db_conn,"SELECT * FROM user WHERE UID='$uid'");
 	$data = mysqli_fetch_array($qUser);
 ?>
 <form class="form-horizontal" method="post">

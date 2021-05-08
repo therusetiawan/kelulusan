@@ -1,0 +1,29 @@
+.badge-danger {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #ff0039;
+    border-radius: 10px;
+}
+
+.badge-success {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #24690e;
+    border-radius: 10px;
+}
