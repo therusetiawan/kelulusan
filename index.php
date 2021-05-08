@@ -135,7 +135,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 		$( "#xpengumuman" ).show();
 		$( "#clock" ).hide();
 	} else {
-		$this.html(event.strftime('Pengumuman dapat dilihat: <span>%H Jam %M Menit %S Detik</span> lagi'));
+		$this.html(event.strftime('Dapat dilihat: <span>%D Hari %H Jam %M Menit %S Detik</span> lagi'));
 		$( "#xpengumuman" ).hide();
 	}
 	});
