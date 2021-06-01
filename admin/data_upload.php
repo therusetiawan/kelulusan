@@ -13,7 +13,7 @@ include "../database.php";
 			
 			while (($unData = fgetcsv($file, 10000, ";")) !== FALSE){
 				//query insert
-				$sql = "INSERT INTO siswa (`no_ujian`, `tgl_lahir`, `nama`, `kelas`, `status`, `suket_url`) VALUES('$unData[0]','$unData[1]','$unData[2]','$unData[3]','$unData[4]', '$unData[5]')";
+				$sql = "INSERT INTO siswa (`no_ujian`, `tgl_lahir`, `nama`, `kelas`, `status`, `suket_url`,`nilai_url`) VALUES('$unData[0]','$unData[1]','$unData[2]','$unData[3]','$unData[4]', '$unData[5]', '$unData[6]')";
 				$res = mysqli_query($db_conn,$sql);
 				
 				if(! $res){

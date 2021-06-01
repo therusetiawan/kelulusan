@@ -73,7 +73,12 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 			if( $data['status'] == 1 ){
 				echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
 				echo '<br><br>';
-				echo '<center><a href="'.$data['suket_url'].'" target="blank"><button class="btn btn-primary center" type="submit" name="submit">Download Surat Keterangan</button></a></center>';
+				echo '<center>';
+				echo '<div class="btn-group" role="group" aria-label="Basic example">
+					  <a href="'.$data['suket_url'].'" target="blank"><button type="button" class="btn btn-primary">Download Surat Keterangan</button></a>
+					  <a href="'.$data['nilai_url'].'" target="blank"><button type="button" class="btn btn-success">Download Nilai</button>
+					</div>';
+				echo '</center>';
 			} else {
 				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
 			}	

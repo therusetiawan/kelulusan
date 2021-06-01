@@ -45,6 +45,7 @@ include '_header.php';
 					<th>Kelas</th>
 					<th>Status</th>
 					<th>Surat Keterangan</th>
+					<th>Nilai</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,6 +65,7 @@ include '_header.php';
 					echo ($data['status']==1) ? '<span class="badge-success">Lulus</span>' : '<span class="badge-danger">Tidak Lulus</span>';
 					echo '</td>';
 					echo '<td><a href="'.$data['suket_url'].'" target="blank">'.$data['suket_url'].'</a></td>';
+					echo '<td><a href="'.$data['nilai_url'].'" target="blank">'.$data['nilai_url'].'</a></td>';
 					echo '</tr>';
 				}
 			} else {
