@@ -81,6 +81,12 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 				echo '</center>';
 			} else {
 				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
+				echo '<br><br>';
+				echo '<center>';
+				echo '<div class="btn-group" role="group" aria-label="Basic example">
+					  <a href="'.$data['suket_url'].'" target="blank"><button type="button" class="btn btn-primary">Download Surat Keterangan</button></a>
+					</div>';
+				echo '</center>';
 			}	
 			?>
 			
