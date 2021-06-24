@@ -110,7 +110,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
             <div class="form-group">
 		<div class="col-sm-10">
 		    <span class="input-group-btn">
-			<button class="btn btn-primary pull-right" type="submit" name="submit">Ambil!</button>
+			<button class="btn btn-primary pull-right" type="submit" name="submit">Periksa!</button>
 		    </span>
 		</div>
             </div>
@@ -141,7 +141,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 		$( "#xpengumuman" ).show();
 		$( "#clock" ).hide();
 	} else {
-		$this.html(event.strftime('Dapat dilihat: <span>%D Hari %H Jam %M Menit %S Detik</span> lagi'));
+		$this.html(event.strftime('Dapat dilihat: <span>%H Jam %M Menit %S Detik</span> lagi'));
 		$( "#xpengumuman" ).hide();
 	}
 	});

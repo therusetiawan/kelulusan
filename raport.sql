@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 24, 2021 at 07:49 PM
+-- Generation Time: Jun 25, 2021 at 04:47 AM
 -- Server version: 5.7.34-0ubuntu0.18.04.1
 -- PHP Version: 7.3.18-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -40,7 +40,7 @@ CREATE TABLE `konfigurasi` (
 --
 
 INSERT INTO `konfigurasi` (`id`, `sekolah`, `tahun`, `tgl_pengumuman`) VALUES
-(2, 'SMKN 1 Seyegan', 2021, '2021-06-25 09:49:00');
+(2, 'SMKN 1 Seyegan', 2021, '2021-06-25 13:30:00');
 
 -- --------------------------------------------------------
 
@@ -56,14 +56,6 @@ CREATE TABLE `siswa` (
   `raport_url` text NOT NULL,
   `count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `siswa`
---
-
-INSERT INTO `siswa` (`no_ujian`, `nama`, `kelas`, `status`, `raport_url`, `count`) VALUES
-('12721', 'Setiawan', 'XII-TKJ.2', 1, 'https://testing-kelulusan2021.s3.amazonaws.com/folder1/12722.pdf', 1),
-('12722', 'Heru Setiawan', 'XII-TKJ.1', 2, 'https://testing-kelulusan2021.s3.amazonaws.com/folder1/12722.pdf', 2);
 
 -- --------------------------------------------------------
 
