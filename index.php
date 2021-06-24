@@ -19,7 +19,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="aplikasi sederhana untuk menampilkan pengumuman hasil ujian nasional secara online">
     <meta name="author" content="slamet.bsan@gmail.com">
-    <title>Pengumuman Kelulusan</title>
+    <title>Raport Online</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
 	<link href="css/kelulusan.css" rel="stylesheet">
@@ -35,7 +35,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="./">Pengumuman Kelulusan <?=$sekolah; ?></a>
+              <a class="navbar-brand" href="./">Raport Online <?=$sekolah; ?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
@@ -46,7 +46,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
     </nav>
     
     <div class="container">
-        <h2>Pengumuman Kelulusan <?= $tahun; ?></h2>
+        <h2>Raport Online <?= $tahun; ?></h2>
 		<!-- countdown -->
 		
 		<div id="clock" class="lead"></div>
@@ -56,11 +56,13 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 		if(isset($_POST['submit'])){
 			//tampilkan hasil queri jika ada
 			$nis = stripslashes($_POST['nis']);
-			$tgl_lahir = date('Y-m-d', strtotime($_POST['tgl_lahir']));
 			
-			$hasil = mysqli_query($db_conn,"SELECT * FROM siswa WHERE no_ujian='$nis' AND tgl_lahir='$tgl_lahir'");
+			$hasil = mysqli_query($db_conn,"SELECT * FROM siswa WHERE no_ujian='$nis'");
 			if(mysqli_num_rows($hasil) > 0){
 				$data = mysqli_fetch_array($hasil);
+				// update count
+				$count = $data['count'] + 1;
+				mysqli_query($db_conn, "UPDATE siswa SET count='$count' WHERE no_ujian='$nis'")
 				
 		?>
 			<table class="table table-bordered">
@@ -71,20 +73,19 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 			
 			<?php
 			if( $data['status'] == 1 ){
-				echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+				echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan NAIK KELAS.</div>';
 				echo '<br><br>';
 				echo '<center>';
 				echo '<div class="btn-group" role="group" aria-label="Basic example">
-					  <a href="'.$data['suket_url'].'" target="blank"><button type="button" class="btn btn-primary">Download Surat Keterangan</button></a>
-					  <a href="'.$data['nilai_url'].'" target="blank"><button type="button" class="btn btn-success">Download Nilai</button>
+					  <a href="'.$data['raport_url'].'" target="blank"><button type="button" class="btn btn-primary">Download Raport</button></a>
 					</div>';
 				echo '</center>';
 			} else {
-				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
+				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK NAIK KELAS.</div>';
 				echo '<br><br>';
 				echo '<center>';
 				echo '<div class="btn-group" role="group" aria-label="Basic example">
-					  <a href="'.$data['suket_url'].'" target="blank"><button type="button" class="btn btn-primary">Download Surat Keterangan</button></a>
+					  <a href="'.$data['raport_url'].'" target="blank"><button type="button" class="btn btn-primary">Download Raport</button></a>
 					</div>';
 				echo '</center>';
 			}	
@@ -92,7 +93,7 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 			
 		<?php
 			} else {
-				echo '<p style="color: red">Data tidak ditemukan! Periksa kembali nomor induk siswa dan tanggal lahir.</p>';
+				echo '<p style="color: red">Data tidak ditemukan! Periksa kembali Nomor Induk Siswa (NIS) atau lapor ke Wali Kelas.</p>';
 				//tampilkan pop-up dan kembali tampilkan form
 			}
 		} else {
@@ -107,15 +108,9 @@ $tgl_pengumuman = strip_tags($hsl['tgl_pengumuman']);
 		</div>
             </div>
             <div class="form-group">
-		<label class="col-sm-4 control-label">Tanggal Lahir</label>
-		<div class="col-sm-6">
-			<input required type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
-		</div>
-            </div>
-            <div class="form-group">
 		<div class="col-sm-10">
 		    <span class="input-group-btn">
-			<button class="btn btn-primary pull-right" type="submit" name="submit">Periksa!</button>
+			<button class="btn btn-primary pull-right" type="submit" name="submit">Ambil!</button>
 		    </span>
 		</div>
             </div>

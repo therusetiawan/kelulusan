@@ -41,11 +41,9 @@ include '_header.php';
 					<th>No</th>
 					<th>NIS</th>
 					<th>Nama Siswa</th>
-					<th>Tanggal Lahir</th>
 					<th>Kelas</th>
 					<th>Status</th>
-					<th>Surat Keterangan</th>
-					<th>Nilai</th>
+					<th>Raport</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,13 +57,11 @@ include '_header.php';
 					echo '<td>'.$i++.'</td>';
 					echo '<td>'.$data['no_ujian'].'</td>';
 					echo '<td>'.$data['nama'].'</td>';
-					echo '<td>'.$data['tgl_lahir'].'</td>';
 					echo '<td>'.$data['kelas'].'</td>';
 					echo '<td>';
-					echo ($data['status']==1) ? '<span class="badge-success">Lulus</span>' : '<span class="badge-danger">Tidak Lulus</span>';
+					echo ($data['status']==1) ? '<span class="badge-success">Naik</span>' : '<span class="badge-danger">Tidak Naik</span>';
 					echo '</td>';
-					echo '<td><a href="'.$data['suket_url'].'" target="blank">'.$data['suket_url'].'</a></td>';
-					echo '<td><a href="'.$data['nilai_url'].'" target="blank">'.$data['nilai_url'].'</a></td>';
+					echo '<td><a href="'.$data['raport_url'].'" target="blank">'.$data['raport_url'].'</a></td>';
 					echo '</tr>';
 				}
 			} else {

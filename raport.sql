@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 08, 2021 at 09:55 AM
--- Server version: 5.7.33-0ubuntu0.18.04.1
+-- Generation Time: Jun 24, 2021 at 07:49 PM
+-- Server version: 5.7.34-0ubuntu0.18.04.1
 -- PHP Version: 7.3.18-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kelulusan`
+-- Database: `raport`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE `konfigurasi` (
 --
 
 INSERT INTO `konfigurasi` (`id`, `sekolah`, `tahun`, `tgl_pengumuman`) VALUES
-(2, 'SMKN 1 Seyegan', 2021, '2021-05-08 09:49:00');
+(2, 'SMKN 1 Seyegan', 2021, '2021-06-25 09:49:00');
 
 -- --------------------------------------------------------
 
@@ -50,20 +50,20 @@ INSERT INTO `konfigurasi` (`id`, `sekolah`, `tahun`, `tgl_pengumuman`) VALUES
 
 CREATE TABLE `siswa` (
   `no_ujian` varchar(12) NOT NULL,
-  `tgl_lahir` date DEFAULT NULL,
   `nama` varchar(50) NOT NULL,
   `kelas` varchar(50) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `suket_url` text NOT NULL
+  `raport_url` text NOT NULL,
+  `count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`no_ujian`, `tgl_lahir`, `nama`, `kelas`, `status`, `suket_url`) VALUES
-('12721', '2021-05-08', 'Setiawan', 'XII-TKJ.2', 1, 'https://testing-kelulusan2021.s3.amazonaws.com/folder1/12722.pdf'),
-('12722', '2021-05-07', 'Heru Setiawan', 'XII-TKJ.1', 2, 'https://testing-kelulusan2021.s3.amazonaws.com/folder1/12722.pdf');
+INSERT INTO `siswa` (`no_ujian`, `nama`, `kelas`, `status`, `raport_url`, `count`) VALUES
+('12721', 'Setiawan', 'XII-TKJ.2', 1, 'https://testing-kelulusan2021.s3.amazonaws.com/folder1/12722.pdf', 1),
+('12722', 'Heru Setiawan', 'XII-TKJ.1', 2, 'https://testing-kelulusan2021.s3.amazonaws.com/folder1/12722.pdf', 2);
 
 -- --------------------------------------------------------
 
